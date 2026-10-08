@@ -1,0 +1,50 @@
+{
+  "case_id": "002-missing-response",
+  "input_type": "synthetic_dbc_asc_requirement",
+  "request_can_id": "0x201",
+  "response_can_id": "0x301",
+  "requirement_id": "REQ-HB-STATUS-001",
+  "response_deadline_ms": 100,
+  "requests": [
+    {
+      "counter": 1,
+      "request_timestamp_s": 0.0,
+      "response_timestamp_s": 0.05,
+      "latency_ms": 50,
+      "status": "matched"
+    },
+    {
+      "counter": 2,
+      "request_timestamp_s": 1.0,
+      "response_timestamp_s": 1.05,
+      "latency_ms": 50,
+      "status": "matched"
+    },
+    {
+      "counter": 3,
+      "request_timestamp_s": 2.0,
+      "response_timestamp_s": null,
+      "latency_ms": null,
+      "status": "missing"
+    },
+    {
+      "counter": 4,
+      "request_timestamp_s": 3.0,
+      "response_timestamp_s": 3.05,
+      "latency_ms": 50,
+      "status": "matched"
+    }
+  ],
+  "supported_findings": [
+    "Request counter 3 at 2.000 s has no matching response within 100 ms.",
+    "Requests 1, 2, and 4 have matching responses with 50 ms latency.",
+    "REQ-HB-STATUS-001 is violated for request counter 3."
+  ],
+  "root_cause": "UNKNOWN",
+  "must_not_claim": [
+    "HCM software is proven faulty",
+    "the bus dropped the response frame",
+    "BCM caused the missing response",
+    "a reset or scheduling defect is proven"
+  ]
+}
