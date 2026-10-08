@@ -1,0 +1,9 @@
+# Licensing
+
+This repository uses separate licenses for benchmark material and source code.
+
+- **Benchmark data, synthetic cases, case descriptions, expected outputs, and documentation:** CC BY 4.0. See [LICENSE-DATA.md](LICENSE-DATA.md).
+- **Source code and executable scripts:** MIT License. See [LICENSE-CODE](LICENSE-CODE).
+
+If a specific file contains a different license notice, that file-level notice
+takes precedence.
