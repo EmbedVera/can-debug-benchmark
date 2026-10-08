@@ -24,17 +24,24 @@ Each case in this repository should provide enough material to answer:
 
 ```text
 cases/
-  001-shortened-request-pulse/
+  <case-id>/
     README.md
     problem.md
+    requirement.md        # when relevant
     input/
       demo.asc
+      demo.dbc            # when relevant
     expected.json
 ```
 
-Future cases may add a DBC, requirement excerpt, code, or other engineering artifacts when they are relevant.
+Future cases may add code or other engineering artifacts when they are relevant.
 
 ## Current cases
+
+| Case | Focus | Evidence boundary |
+| --- | --- | --- |
+| [001 — Shortened request pulse](cases/001-shortened-request-pulse/) | Localized CAN timing deviation | Detect timing anomaly; keep component root cause UNKNOWN |
+| [002 — Missing response](cases/002-missing-response/) | Request/response correlation + requirement timing | Prove one response requirement violation; keep software root cause UNKNOWN |
 
 ### Case 001 — Shortened request pulse
 
@@ -42,7 +49,13 @@ A synthetic CAN message normally arrives every `0.500 s`. Around one event, the 
 
 The benchmark expects a tool to detect the timing anomaly while **not** claiming a component root cause from timing evidence alone.
 
-See [`cases/001-shortened-request-pulse`](cases/001-shortened-request-pulse/).
+### Case 002 — Missing response after a valid request
+
+A synthetic DBC defines `LIGHT_REQUEST` and `HCM_STATUS`. The accompanying requirement requires a matching status response within `100 ms`.
+
+Four requests appear in the log. Counters `1`, `2`, and `4` receive matching responses at `50 ms`; counter `3` receives none within the required window.
+
+The benchmark expects a tool to prove the requirement violation while **not** claiming that HCM software, BCM, the bus, scheduling, or reset behavior is the final cause.
 
 ## Evaluation philosophy
 
@@ -57,7 +70,7 @@ The benchmark should penalize hallucinated signals, invented requirements, and u
 
 ## Related project
 
-For a minimal deterministic timing analyzer that can run against the first case, see [EmbedVera/can-log-toolkit](https://github.com/EmbedVera/can-log-toolkit).
+For minimal deterministic utilities, see [EmbedVera/can-log-toolkit](https://github.com/EmbedVera/can-log-toolkit).
 
 For evidence-driven CAN issue investigation beyond the public benchmark, see [EmbedVera](https://embedvera.com/).
 
@@ -67,4 +80,9 @@ For evidence-driven CAN issue investigation beyond the public benchmark, see [Em
 
 ## License
 
-A public data/code license has not been selected yet. A license will be added before the first tagged benchmark release.
+This repository uses split licensing:
+
+- benchmark data, synthetic cases, case descriptions, expected outputs, and documentation: **CC BY 4.0** — see [LICENSE-DATA.md](LICENSE-DATA.md);
+- source code and executable scripts: **MIT License** — see [LICENSE-CODE](LICENSE-CODE).
+
+See [LICENSE](LICENSE) for the repository licensing map.
