@@ -1,0 +1,28 @@
+{
+  "case_id": "001-shortened-request-pulse",
+  "input_type": "synthetic_asc",
+  "target_can_id": "0x123",
+  "frame_count": 6,
+  "dominant_interval_s": 0.5,
+  "expected_observations": [
+    {
+      "previous_timestamp_s": 1.0,
+      "timestamp_s": 1.25,
+      "interval_s": 0.25,
+      "classification": "shortened_interval"
+    },
+    {
+      "previous_timestamp_s": 1.25,
+      "timestamp_s": 2.0,
+      "interval_s": 0.75,
+      "classification": "long_interval_after_event"
+    }
+  ],
+  "supported_finding": "CAN ID 0x123 contains a localized timing deviation around 1.250 s and 2.000 s before returning to the dominant 0.500 s interval.",
+  "root_cause": "UNKNOWN",
+  "must_not_claim": [
+    "a specific ECU is faulty",
+    "a software defect is proven",
+    "a requirement violation is proven"
+  ]
+}
